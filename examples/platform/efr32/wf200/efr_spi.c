@@ -91,16 +91,16 @@ sl_status_t sl_wfx_host_init_bus(void)
      * not controlled by EUSART so there is no write to the corresponding
      * EUSARTROUTE register to do this.
      */
-    MY_USART->CTRL |= (1u << _USART_CTRL_SMSDELAY_SHIFT);
+    //MY_USART->CTRL |= (1u << _USART_CTRL_SMSDELAY_SHIFT);
 
 #if defined(EFR32MG12)
     MY_USART->ROUTEPEN = USART_ROUTEPEN_TXPEN | USART_ROUTEPEN_RXPEN | USART_ROUTEPEN_CLKPEN;
 #endif
 
 #if defined(EFR32MG24)
-    GPIO->USARTROUTE[0].ROUTEEN = GPIO_USART_ROUTEEN_RXPEN | // MISO
+    /*GPIO->USARTROUTE[0].ROUTEEN = GPIO_USART_ROUTEEN_RXPEN | // MISO
         GPIO_USART_ROUTEEN_TXPEN |                           // MOSI
-        GPIO_USART_ROUTEEN_CLKPEN;
+        GPIO_USART_ROUTEEN_CLKPEN;*/
 #endif
 
     spi_sem = xSemaphoreCreateBinaryStatic(&xEfrSpiSemaBuffer);
